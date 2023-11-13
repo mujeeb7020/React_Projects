@@ -6,6 +6,7 @@ function App() {
   const [number, setNumber] = useState(false);
   const [char, setChar] = useState(false);
   const [password, setPassword] = useState("");
+  const [copied,setCopied]=useState(false)
 
   const passwordGenerator = useCallback(() => {
     let passwrd = "";
@@ -28,38 +29,43 @@ function App() {
     usePassRef.current?.select();
     console.log("reached")
     usePassRef.current?.setSelectionRange(0,10);
-    window.navigator.clipboard.writeText(password)
+    window.navigator.clipboard.writeText(password);
+    setCopied((prev)=>!prev)
 
   }
   
-  // useEffect(()=>{
-  //   passwordGenerator()
-  // },[length,number,char,passwordGenerator])
-
-  const handlePass=()=>{
+  useEffect(()=>{
     passwordGenerator()
-  }
+  },[length,number,char,setPassword])
+
+  // const handlePass=()=>{
+  //   passwordGenerator()
+  // }
 
   return (
     <>
-      <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-8 my-8 text-orange-500 bg-gray-700 text-center">
-        <div className="flex shadow rounded-lg overflow-hidden mb-4">
+      <div className="w-full max-w-xl mx-auto shadow-md rounded-lg px-4 py-8 my-8 text-orange-500 bg-gray-700 text-center">
+        <div className="mb-5">
+          <p className="text-3xl text-white  border-b-2 ">P@ssword Generator</p>
+        </div>
+        <div className="flex shadow  overflow-hidden mb-4 gap-5">
           <input
             type="text"
             value={password}
-            className="outline-none w-full py-1 px-3 rounded-lg"
+            className="outline-none w-full py-3 px-3 border-blue-500 rounded-sm"
             placeholder="password"
             readOnly
             ref={usePassRef}
           />
           <button
           onClick={handleCopyPass}
-          className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0 rounded-lg ">
+          className="outline-none bg-blue-700 text-white px-4 py-0.5 shrink-0 border-blue-500 rounded-md hover:bg-green-600  ">
             Copy
           </button>
         </div>
-        <div className="flex text-sm gap-x-3 py-1">
-          <div>
+
+        <div className="flex text-sm gap-x-1 justify-around py-1  border-red-500">
+          <div className="flex items-center gap-1">
           <input
            type="range" 
            min={6}
@@ -69,7 +75,7 @@ function App() {
            onChange={(e)=>{setLength(e.target.value)}}
            
            />
-           <label >Length: {length}</label>
+           <label className="text-lg text-white" >Length: {length}</label>
           </div>
 
           <div className="flex items-center gap-x-1">
@@ -82,7 +88,7 @@ function App() {
           }}
           
           />
-          <label htmlFor="numberInput">Numbers</label>
+          <label htmlFor="numberInput" className="text-lg text-white">Numbers</label>
         </div>
         <div className="flex items-center gap-x-1">
           <input
@@ -94,13 +100,18 @@ function App() {
           }}
           
           />
-          <label htmlFor="charecterInput">Charecters</label>
+          <label htmlFor="charecterInput" className="text-lg text-white">Charecters</label>
         </div>
 
-        <button onClick={handlePass}>click to load</button>
         </div>
         
       </div>
+
+      {copied && <div className="text-center bg-white py-4 rounded-lg w-full max-w-xl mx-auto absolute left-[29%]">
+      <p className="text-3xl text-blue-950">Copied P@ssword of length <span className="bg-green-700 text-white px-3 py-1 rounded">{length}</span></p>
+      </div>}
+
+      
     </>
   );
 }
