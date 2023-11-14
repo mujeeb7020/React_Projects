@@ -8,7 +8,6 @@ function App() {
   const [char, setChar] = useState(false);
   const [password, setPassword] = useState("");
   const [copied,setCopied]=useState(false)
-  const [reflength,setReflength]=useState(0);
 
   const passwordGenerator = useCallback(() => {
     let passwrd = "";
