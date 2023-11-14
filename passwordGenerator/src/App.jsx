@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect,useRef } from "react";
 import "./App.css";
+import './index.css'
 
 function App() {
   const [length, setLength] = useState(6);
@@ -7,6 +8,7 @@ function App() {
   const [char, setChar] = useState(false);
   const [password, setPassword] = useState("");
   const [copied,setCopied]=useState(false)
+  const [reflength,setReflength]=useState(0);
 
   const passwordGenerator = useCallback(() => {
     let passwrd = "";
@@ -30,7 +32,9 @@ function App() {
     console.log("reached")
     usePassRef.current?.setSelectionRange(0,10);
     window.navigator.clipboard.writeText(password);
-    setCopied((prev)=>!prev)
+    if(!copied){
+      setCopied((prev)=>!prev)
+    }
 
   }
   
@@ -44,9 +48,10 @@ function App() {
 
   return (
     <>
-      <div className="w-full max-w-xl mx-auto shadow-md rounded-lg px-4 py-8 my-8 text-orange-500 bg-gray-700 text-center">
+    <div className="bgcolorr">
+      <div className="w-full max-w-xl mx-auto shadow-md rounded-lg px-4 py-8 my-8 text-orange-500 bg-[#004246] text-center">
         <div className="mb-5">
-          <p className="text-3xl text-white  border-b-2 ">P@ssword Generator</p>
+          <p className="text-3xl font-bold text-white  border-b-2 border-[#2df8c5] pb-2">P@ssword Generator</p>
         </div>
         <div className="flex shadow  overflow-hidden mb-4 gap-5">
           <input
@@ -59,7 +64,7 @@ function App() {
           />
           <button
           onClick={handleCopyPass}
-          className="outline-none bg-blue-700 text-white px-4 py-0.5 shrink-0 border-blue-500 rounded-md hover:bg-green-600  ">
+          className=" btnstyle outline-none bg-[#2df8c5] text-[#525252] px-4 py-0.5 shrink-0 border-[#004246] rounded-md hover:bg-green-600 hover:text-white  ">
             Copy
           </button>
         </div>
@@ -69,7 +74,7 @@ function App() {
           <input
            type="range" 
            min={6}
-           max={100}
+           max={10}
            value={length}
            className="cursor-pointer"
            onChange={(e)=>{setLength(e.target.value)}}
@@ -107,11 +112,11 @@ function App() {
         
       </div>
 
-      {copied && <div className="text-center bg-white py-4 rounded-lg w-full max-w-xl mx-auto absolute left-[29%]">
-      <p className="text-3xl text-blue-950">Copied P@ssword of length <span className="bg-green-700 text-white px-3 py-1 rounded">{length}</span></p>
+      {copied && <div className="text-center bg-[#004246] py-4 rounded-lg w-full max-w-xl mx-auto absolute left-[29%]">
+      <p className="text-3xl text-white">Copied P@ssword of length <span className="bg-[#2df8c5] text-[#004246] px-3 py-1 rounded">{length}</span></p>
       </div>}
 
-      
+      </div>
     </>
   );
 }
