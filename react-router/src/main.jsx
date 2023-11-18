@@ -9,6 +9,7 @@ import About from './components/About/About.jsx'
 import Contact from './components/Contact/Contact.jsx'
 import Github, { githubDataLoader } from './components/Github/Github.jsx'
 import User from './components/User/User.jsx'
+import Myname from './components/Myname/Myname.jsx'
 
 
 
@@ -41,7 +42,9 @@ const router=createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
       <Route path='' element={<Home/>}/>
-      <Route path='about' element={<About/>}/>
+      <Route path='about' element={<About/>}>
+        <Route path='mujeeb' element={<Myname/>}/>
+      </Route>
       <Route path='contact' element={<Contact/>} />
       <Route path='user/:userid' element={<User/>} />
       <Route 
@@ -59,5 +62,5 @@ const router=createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
+  </React.StrictMode>
 )
