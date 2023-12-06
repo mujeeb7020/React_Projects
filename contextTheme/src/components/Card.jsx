@@ -1,6 +1,6 @@
 export default function Card() {
     return (
-        <div className="w-full bg-white  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
            <div className="">
            <a href="/">
                 <img className=" h-[16rem] w-full rounded-lg" src="https://5.imimg.com/data5/SELLER/Default/2022/3/KC/SU/YE/79306562/a2376-apple-logo-series-7-smartwatch-500x500.jpeg" alt="product_image1" />

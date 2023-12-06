@@ -26,8 +26,8 @@ function App() {
   return (
     <ThemeProvider value={{ themeMode, lightTheme, darkTheme }}>
       <div className="flex flex-wrap min-h-screen items-center">
-        <div className="w-full bg-[#5c5454] p-2 rounded-2xl" >
-          <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
+        <div className="w-full border bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white text-black p-1.5 rounded-xl" >
+          <div className="w-full max-w-sm mx-auto flex justify-end mb-3">
               <ThemeBtn/>
           </div>
 
